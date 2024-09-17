@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 
 class PredictionInfoScreen extends StatelessWidget {
+  const PredictionInfoScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false, // Prevents default back button
         flexibleSpace: Container(
-          color: Color.fromRGBO(71, 107, 21, 1), // Adjusted the opacity value
+          color: const Color.fromRGBO(71, 107, 21, 1), // Adjusted the opacity value
           padding: const EdgeInsets.symmetric(horizontal: 10.0),
           height: 100,
           child: Padding(
@@ -15,13 +17,13 @@ class PredictionInfoScreen extends StatelessWidget {
             child: Row(
               children: [
                 IconButton(
-                  icon: Icon(Icons.arrow_back, color: Colors.white),
+                  icon: const Icon(Icons.arrow_back, color: Colors.white),
                   onPressed: () {
                     Navigator.of(context).pop();
                   },
                 ),
                 const SizedBox(width: 10),
-                Text(
+                const Text(
                   "Prediction Value Info",
                   style: TextStyle(
                     color: Colors.white,
@@ -88,19 +90,19 @@ class PredictionInfoScreen extends StatelessWidget {
                         text:
                         'Prediction Value = 1\nVery Good Sleep Quality: Your sleep is of excellent quality.',
                       ),
-                      SizedBox(height: 10),
+                      const SizedBox(height: 10),
                       BulletPoint(
                         color: Colors.lightGreen,
                         text:
                         'Prediction Value = 2\nFairly Good Sleep Quality: Your sleep is generally good but there is some room for improvement.',
                       ),
-                      SizedBox(height: 10),
+                      const SizedBox(height: 10),
                       BulletPoint(
                         color: Colors.orange,
                         text:
                         'Prediction Value = 3\nFairly Bad Sleep Quality: Your sleep is not very good, and several factors might need to be addressed.',
                       ),
-                      SizedBox(height: 10),
+                      const SizedBox(height: 10),
                       BulletPoint(
                         color: Colors.red,
                         text:
@@ -109,7 +111,7 @@ class PredictionInfoScreen extends StatelessWidget {
                     ],
                   ),
                 ),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 Container(
                   decoration: BoxDecoration(
                     color: Colors.white,
@@ -119,13 +121,13 @@ class PredictionInfoScreen extends StatelessWidget {
                         color: Colors.grey.withOpacity(0.5),
                         spreadRadius: 2,
                         blurRadius: 5,
-                        offset: Offset(0, 3),
+                        offset: const Offset(0, 3),
                       ),
                     ],
                     border: Border.all(color: Colors.blueAccent),
                   ),
-                  padding: EdgeInsets.all(16),
-                  child: Text(
+                  padding: const EdgeInsets.all(16),
+                  child: const Text(
                     'Based on your sleep data, our decision tree analysis pinpoints where your sleep quality is affected. We provide personalized suggestions to help you achieve better sleep.',
                     style: TextStyle(fontSize: 18),
                   ),
@@ -159,11 +161,11 @@ class BulletPoint extends StatelessWidget {
             shape: BoxShape.circle,
           ),
         ),
-        SizedBox(width: 10),
+        const SizedBox(width: 10),
         Expanded(
           child: Text(
             text,
-            style: TextStyle(fontSize: 18),
+            style: const TextStyle(fontSize: 18),
           ),
         ),
       ],

@@ -42,7 +42,7 @@ class CustomTextFormField extends StatelessWidget {
           keyboardType: TextInputType.number,
           decoration: InputDecoration(
             labelText: labelText,
-            labelStyle: TextStyle(
+            labelStyle: const TextStyle(
               color: Colors.black
             ),
             hintText: hintText,

@@ -27,7 +27,7 @@ class _HomePageState extends State<HomePage> {
           preferredSize: const Size.fromHeight(60.0), // Height of the custom AppBar
           child: Container(
             // height: 100,
-            color: Color.fromRGBO(71, 107, 21,100),
+            color: const Color.fromRGBO(71, 107, 21,100),
             padding: const EdgeInsets.symmetric(horizontal: 10.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -73,16 +73,16 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
               ListTile(
-                leading: Icon(Icons.home),
-                title: Text('Home'),
+                leading: const Icon(Icons.home),
+                title: const Text('Home'),
                 onTap: () {
                   Navigator.pop(context); // close the drawer
                   // Navigate to Home screen or perform other actions
                 },
               ),
               ListTile(
-                leading: Icon(Icons.person),
-                title: Text('Profile'),
+                leading: const Icon(Icons.person),
+                title: const Text('Profile'),
                 onTap: () {
                   Navigator.pop(context); // close the drawer
                   // Navigate to Profile screen or perform other actions
@@ -92,7 +92,7 @@ class _HomePageState extends State<HomePage> {
                 leading: const Icon(Icons.lock),
                 title: const Text('Data Safety'),
                 onTap: () {
-                  Get.to(()=> DataSafetyScreen());
+                  Get.to(()=> const DataSafetyScreen());
                 },
               ),
               ListTile(
@@ -114,7 +114,7 @@ class _HomePageState extends State<HomePage> {
                 title: const Text('Evaluation Metrics'),
                 onTap: () {
                   Navigator.pop(context);
-                  Get.to(() => PredictionInfoScreen());
+                  Get.to(() => const PredictionInfoScreen());
                 },
               ),
 

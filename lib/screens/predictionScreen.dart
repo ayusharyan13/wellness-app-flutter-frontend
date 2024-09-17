@@ -15,7 +15,7 @@ class PredictionScreen extends StatelessWidget {
       ),
       body: Center(
         child: Container(
-          color: Color.fromRGBO(192, 214, 169,100),
+          color: const Color.fromRGBO(192, 214, 169,100),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [

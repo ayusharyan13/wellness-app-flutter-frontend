@@ -24,7 +24,7 @@ class FormController extends GetxController {
 
   var isLoading = false.obs;
 
-  final String ngrokUrl = "https://cfb0-103-139-191-219.ngrok-free.app";
+  final String ngrokUrl = "https://bc8e-103-139-191-219.ngrok-free.app";
 
   @override
   void onClose() {
