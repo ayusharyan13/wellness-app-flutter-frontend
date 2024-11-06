@@ -7,9 +7,9 @@ class PredictionInfoScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        automaticallyImplyLeading: false, // Prevents default back button
+        automaticallyImplyLeading: false,
         flexibleSpace: Container(
-          color: const Color.fromRGBO(71, 107, 21, 1), // Adjusted the opacity value
+          color: const Color.fromRGBO(71, 107, 21, 1),
           padding: const EdgeInsets.symmetric(horizontal: 10.0),
           height: 100,
           child: Padding(

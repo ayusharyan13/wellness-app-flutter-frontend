@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:get/get_navigation/src/root/get_material_app.dart';
-import 'package:sleep_final/screens/Homepage.dart';
-import 'package:sleep_final/screens/splashScreen.dart';
-import '../controllers/predictionController.dart';
+import 'package:get/get.dart';
+import 'package:sleep_final/features/splashScreen/splashScreen.dart';
+import 'package:sleep_final/screens/userGuideScreen.dart';
+import 'controllers/loginController.dart';
+import 'features/auth/login.dart';
 
 void main() {
   runApp(const MyApp());
@@ -20,7 +21,8 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const SplashScreen(),
+      home: const SplashScreen()
     );
   }
 }
+

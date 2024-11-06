@@ -39,6 +39,9 @@ dependencies:
   get: ^4.6.6
   http: ^1.2.1
   flutter_markdown: ^0.7.1
+  shared_preferences: ^2.3.2
+  image_picker: ^1.1.2
+  carousel_slider: ^5.0.0
 
 dev_dependencies:
   flutter_test:
@@ -66,6 +69,7 @@ flutter:
   assets:
     - assets/images/
     - assets/animation/
+    - assets/icons/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+
+import '../controllers/loginController.dart';
+import '../features/auth/login.dart';
 
 class UserGuideScreen extends StatelessWidget {
   const UserGuideScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final LoginController loginController = Get.put(LoginController());
     return Scaffold(
       appBar: AppBar(
         title: const Text('User Guide',
@@ -52,6 +58,14 @@ class UserGuideScreen extends StatelessWidget {
 
                 ],
               ),
+              ElevatedButton(
+                onPressed: () {
+                  loginController.logOut();
+                  Get.offAll(() => const LoginScreen()); // Navigate back to login screen
+                },
+                child: const Text('Log Out'),
+              ),
+
               const SizedBox(height: 20),
               _buildInputExplanation(
                 'Hours Slept',

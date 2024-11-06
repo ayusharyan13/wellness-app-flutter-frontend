@@ -1,22 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sleep_final/screens/DataSafety.dart';
-import 'package:sleep_final/screens/predictionMetrics.dart';
-import 'package:sleep_final/screens/predictionScreen.dart';
+import 'package:sleep_final/features/sleep_prediction/predictionMetrics.dart';
+import 'package:sleep_final/features/sleep_prediction/SleepPredictionScreen.dart';
 import 'package:sleep_final/screens/userGuideScreen.dart';
-import '../controllers/formController.dart';
-import '../widgets/resuable_form.dart';
+import '../../controllers/formController.dart';
+import '../../widgets/resuable_form.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+class SleepPredictForm extends StatefulWidget {
+  const SleepPredictForm({super.key});
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<SleepPredictForm> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomePageState extends State<SleepPredictForm> {
 
-  final FormController formController = Get.put(FormController());
+  final SleepFormController formController = Get.put(SleepFormController());
   final _formKey = GlobalKey<FormState>();
 
   @override
@@ -24,7 +24,7 @@ class _HomePageState extends State<HomePage> {
     return SafeArea(
       child: Scaffold(
         appBar: PreferredSize(
-          preferredSize: const Size.fromHeight(60.0), // Height of the custom AppBar
+          preferredSize: const Size.fromHeight(60.0),
           child: Container(
             // height: 100,
             color: const Color.fromRGBO(71, 107, 21,100),

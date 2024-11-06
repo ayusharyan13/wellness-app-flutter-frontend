@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 
-class PredictionScreen extends StatelessWidget {
+class SleepPredictionScreen extends StatelessWidget {
   final String prediction;
   final String suggestion;
 
-  const PredictionScreen({super.key, required this.prediction, required this.suggestion});
+  const SleepPredictionScreen({super.key, required this.prediction, required this.suggestion});
 
   @override
   Widget build(BuildContext context) {

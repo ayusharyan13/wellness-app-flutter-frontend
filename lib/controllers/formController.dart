@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:sleep_final/controllers/suggestionController.dart';
-import 'package:sleep_final/screens/predictionScreen.dart';
+import 'package:sleep_final/features/sleep_prediction/SleepPredictionScreen.dart';
 import '../controllers/predictionController.dart';
 
-class FormController extends GetxController {
+class SleepFormController extends GetxController {
   var hoursSleptController = TextEditingController().obs;
   var conversationDurationController = TextEditingController().obs;
   var darkDurationController = TextEditingController().obs;
@@ -89,7 +89,7 @@ class FormController extends GetxController {
         // print('Predicted sleep in hours is: $prediction');
         print('suggestions: $suggestion');
         Get.to(() =>
-            PredictionScreen(
+            SleepPredictionScreen(
                 prediction: prediction.toString(), suggestion: suggestion));
       } else {
         Get.snackbar('Error', 'Failed to submit form');
