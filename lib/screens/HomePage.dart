@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:sleep_final/features/Booking/screens/BookingHomePage.dart';
 import 'package:sleep_final/widgets/meetup_meditation.dart';
 import '../features/blog/BlogPage.dart';
 import '../features/EmergencyDetails/emergency_help.dart';
@@ -29,7 +30,20 @@ class _HomepageState extends State<Homepage> {
         MaterialPageRoute(builder: (context) =>  const BlogListScreen()),
       );
     }
-  }
+    if (index == 1) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) =>  const BookingHomePage()),
+      );
+    }
+    if (index == 3) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) =>  const BookingHomePage()),
+      );
+    }
+
+}
 
   // List of image URLs for the carousel
   final List<String> imageUrls = [

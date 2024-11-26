@@ -1,9 +1,10 @@
 import 'dart:convert';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:sleep_final/constants/urlApi.dart';
-import 'package:sleep_final/screens/userGuideScreen.dart';
+import 'package:sleep_final/screens/HomePage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../features/blog/BlogPage.dart';
@@ -52,8 +53,10 @@ class LoginController extends GetxController {
         await prefs.setString('accessToken', accessToken);
         await prefs.setString('tokenType', tokenType);
 
-        print('accessToken: $accessToken');
-        Get.to(() =>  BlogListScreen());
+        if (kDebugMode) {
+          print('accessToken: $accessToken');
+        }
+        Get.to(() =>  const Homepage());
       } else {
         Get.snackbar('Error', 'Failed to Login');
       }

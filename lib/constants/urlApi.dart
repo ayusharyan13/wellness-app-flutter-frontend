@@ -1,6 +1,6 @@
 class UrlApi {
   UrlApi._();
-  static const baseUrl = "https://c319-103-139-191-219.ngrok-free.app";
+  static const baseUrl = "https://c06b-103-139-190-234.ngrok-free.app";
 
   //        ------ Authentication API ------------------
   static const authUrl = "$baseUrl/api/auth";

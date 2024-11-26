@@ -69,7 +69,7 @@ class _SplashScreenState extends State<SplashScreen> {
                   } else {
                     // If not logged in, navigate to the login screen
                     Timer(const Duration(seconds: 2), () {
-                      Get.to(const Homepage());
+                      Get.to(const LoginScreen());
                     });
                     return const Text(
                       "Redirecting to Login...",
