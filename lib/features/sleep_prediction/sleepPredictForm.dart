@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:sleep_final/screens/DataSafety.dart';
-import 'package:sleep_final/features/sleep_prediction/predictionMetrics.dart';
-import 'package:sleep_final/features/sleep_prediction/SleepPredictionScreen.dart';
-import 'package:sleep_final/screens/userGuideScreen.dart';
+import 'package:wellness/features/sleep_prediction/predictionMetrics.dart';
 import '../../controllers/formController.dart';
-import '../../widgets/resuable_form.dart';
+import '../DataSafety/DataSafety.dart';
+import '../UserGuide/screens/userGuideScreen.dart';
+import '../auth/widgets/resuable_form.dart';
 
 class SleepPredictForm extends StatefulWidget {
   const SleepPredictForm({super.key});

@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:sleep_final/features/splashScreen/splashScreen.dart';
-import 'package:sleep_final/screens/userGuideScreen.dart';
 import 'controllers/loginController.dart';
-import 'features/auth/login.dart';
+import 'features/auth/screens/login.dart';
+import 'features/splashScreen/splashScreen.dart';
 
 void main() {
   runApp(const MyApp());

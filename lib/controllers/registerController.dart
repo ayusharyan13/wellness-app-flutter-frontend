@@ -2,8 +2,8 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
-import 'package:sleep_final/features/auth/login.dart';
 import '../constants/urlApi.dart';
+import '../features/auth/screens/login.dart';
 
 class RegisterController extends GetxController {
   var emailController = TextEditingController().obs;

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 class DatePickerButton extends StatefulWidget {
-  final Function(DateTime) onDateSelected; // Function to notify parent widget of date selection
+  final Function(DateTime) onDateSelected;
 
   const DatePickerButton({super.key, required this.onDateSelected});
 
@@ -45,7 +45,6 @@ class _DatePickerButtonState extends State<DatePickerButton> {
       }
       current = current.add(const Duration(days: 1));
     }
-
     return dates;
   }
 
@@ -132,29 +131,3 @@ class _DatePickerButtonState extends State<DatePickerButton> {
     );
   }
 }
-
-
-// Padding(
-//   padding: const EdgeInsets.symmetric(horizontal: 20.0),
-//   child: ElevatedButton(
-//     onPressed: () {
-//       ScaffoldMessenger.of(context).showSnackBar(
-//         SnackBar(
-//           content: Text(
-//               "Confirmed Date: ${DateFormat.yMMMMd().format(selectedDate)}"),
-//         ),
-//       );
-//     },
-//     style: ElevatedButton.styleFrom(
-//       padding: const EdgeInsets.symmetric(vertical: 15.0),
-//       shape: RoundedRectangleBorder(
-//         borderRadius: BorderRadius.circular(8.0),
-//       ),
-//     ),
-//     child: const Text(
-//       "Confirm",
-//       style: TextStyle(fontSize: 16),
-//     ),
-//   ),
-// ),
-// const SizedBox(height: 20),

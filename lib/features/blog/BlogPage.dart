@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:sleep_final/constants/urlApi.dart';
+import '../../constants/urlApi.dart';
 import 'BlogFullView.dart';
 
 class BlogListScreen extends StatefulWidget {
@@ -11,31 +11,66 @@ class BlogListScreen extends StatefulWidget {
   _BlogListScreenState createState() => _BlogListScreenState();
 }
 
-class _BlogListScreenState extends State<BlogListScreen> {
+class _BlogListScreenState extends State<BlogListScreen>
+    with SingleTickerProviderStateMixin {
   List blogs = [];
   bool isLoading = true;
+
+  // Category mapping
+  final Map<int, String> categoryNames = {
+    1: 'Academic Pressure',
+    2: 'Sleep Issues',
+    3: 'Wellness Tips',
+    4: 'Mental Health Tips',
+  };
+
+  late TabController _tabController;
 
   @override
   void initState() {
     super.initState();
-    fetchBlogs();
+    _tabController = TabController(length: categoryNames.length, vsync: this);
+
+    // Fetch blogs initially for the first category
+    fetchBlogs(1);
+
+    // Fetch blogs when the tab changes
+    _tabController.addListener(() {
+      if (_tabController.indexIsChanging) return; // Wait until the tab is fully changed
+      fetchBlogs(_tabController.index + 1); // Fetch blogs for the new category
+    });
   }
 
-  // Fetch blogs from the API
-  Future<void> fetchBlogs() async {
-    const blogHomepage =
-        UrlApi.urlGetAllPosts;
-    final response = await http.get(Uri.parse(blogHomepage));
+  @override
+  void dispose() {
+    _tabController.dispose();
+    super.dispose();
+  }
 
-    if (response.statusCode == 200) {
+  // Fetch blogs from the API based on category ID
+  Future<void> fetchBlogs(int categoryId) async {
+    final blogCategoryUrl = '${UrlApi.getPostsByCategoryId}/$categoryId';
+    setState(() {
+      isLoading = true;
+    });
+
+    try {
+      final response = await http.get(Uri.parse(blogCategoryUrl));
+      if (response.statusCode == 200) {
+        setState(() {
+          blogs = json.decode(response.body);
+          isLoading = false;
+        });
+      } else {
+        throw Exception('Failed to load blogs');
+      }
+    } catch (e) {
       setState(() {
-        blogs = json.decode(response.body)['content'];
         isLoading = false;
       });
-    } else {
-      setState(() {
-        isLoading = false;
-      });
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Error: ${e.toString()}')),
+      );
     }
   }
 
@@ -43,41 +78,35 @@ class _BlogListScreenState extends State<BlogListScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Blog App'),
-        actions: [
-          PopupMenuButton<String>(
-            onSelected: (category) {
-              fetchBlogs();
-            },
-            itemBuilder: (context) => [
-              const PopupMenuItem(value: 'All', child: Text('All')),
-              const PopupMenuItem(
-                  value: 'Mental Wellbeing', child: Text('Mental Wellbeing')),
-              const PopupMenuItem(value: 'Sleep', child: Text('Sleep')),
-              // Add more categories as needed
-            ],
-            icon: const Icon(Icons.filter_list),
-          ),
-          IconButton(
-            icon: const Icon(Icons.person),
-            onPressed: () {
-              // Navigate to profile page
-            },
-          ),
-        ],
+        title: const Text('Blogs'),
+        bottom: TabBar(
+          controller: _tabController,
+          tabs: categoryNames.values
+              .map((category) => Tab(text: category))
+              .toList(),
+          isScrollable: true,
+        ),
       ),
-      body: isLoading
-          ? const Center(child: CircularProgressIndicator())
-          : ListView.builder(
-              itemCount: blogs.length,
-              itemBuilder: (context, index) {
-                final blog = blogs[index];
-                return BlogCard(blog: blog);
-              },
-            ),
+      body: TabBarView(
+        controller: _tabController,
+        children: categoryNames.keys.map((categoryId) {
+          return isLoading
+              ? const Center(child: CircularProgressIndicator())
+              : blogs.isEmpty
+              ? const Center(child: Text('No blogs available for this category.'))
+              : ListView.builder(
+            itemCount: blogs.length,
+            itemBuilder: (context, index) {
+              final blog = blogs[index];
+              return BlogCard(blog: blog);
+            },
+          );
+        }).toList(),
+      ),
     );
   }
 }
+
 class BlogCard extends StatelessWidget {
   final Map<String, dynamic> blog;
 
@@ -87,7 +116,6 @@ class BlogCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        // Navigate to the full blog view with the blog data
         Navigator.push(
           context,
           MaterialPageRoute(
@@ -107,7 +135,6 @@ class BlogCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              // Text section
               Expanded(
                 flex: 3,
                 child: Padding(
@@ -116,7 +143,7 @@ class BlogCard extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        blog['title'],
+                        blog['title'] ?? 'Untitled',
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                         style: const TextStyle(
@@ -127,7 +154,7 @@ class BlogCard extends StatelessWidget {
                       ),
                       const SizedBox(height: 8.0),
                       Text(
-                        blog['description'],
+                        blog['description'] ?? '',
                         style: const TextStyle(
                           fontSize: 14,
                           color: Colors.black54,
@@ -142,7 +169,7 @@ class BlogCard extends StatelessWidget {
               ClipRRect(
                 borderRadius: BorderRadius.circular(10),
                 child: Image.network(
-                  blog['imageUrl'] ?? 'https://th.bing.com/th/id/R.a0d279a6795b1d6bba51798e1841c682?rik=GhZC4ve7o3erFg&riu=http%3a%2f%2fkickstarterz.co.uk%2fwp-content%2fuploads%2f2021%2f02%2fchildren-and-mental-health.png&ehk=oeRfF31I90Ex1KY6wgUsocBuM6k77anjrvk0pVCJWiE%3d&risl=&pid=ImgRaw&r=0',
+                  blog['imageUrl'] ?? 'https://via.placeholder.com/100',
                   height: 100,
                   width: 100,
                   fit: BoxFit.cover,
@@ -155,5 +182,3 @@ class BlogCard extends StatelessWidget {
     );
   }
 }
-
-

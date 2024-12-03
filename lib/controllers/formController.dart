@@ -2,9 +2,8 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
-import 'package:sleep_final/controllers/suggestionController.dart';
-import 'package:sleep_final/features/sleep_prediction/SleepPredictionScreen.dart';
 import '../controllers/predictionController.dart';
+import '../features/sleep_prediction/SleepPredictionScreen.dart';
 
 class SleepFormController extends GetxController {
   var hoursSleptController = TextEditingController().obs;

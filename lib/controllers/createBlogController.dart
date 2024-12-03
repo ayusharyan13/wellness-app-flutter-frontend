@@ -2,9 +2,9 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
-import 'package:sleep_final/constants/urlApi.dart';
-import 'package:sleep_final/screens/userGuideScreen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import '../constants/urlApi.dart';
 
 
 class CreateBlogController extends GetxController {
@@ -39,7 +39,7 @@ class CreateBlogController extends GetxController {
 
   Future<void> logInButton() async {
     isLoading.value = true;
-    const createPostUrl = UrlApi.urlCreatePost;
+    var createPostUrl = UrlApi.urlCreatePost;
 
     try {
       final response = await http.post(
